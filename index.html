@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随机词汇生成器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    .word {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .word-text {
+      flex-grow: 1;
+      margin-right: 10px;
+      color: #666;
+    }
+    .copy-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .copy-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>一对一！重复无效！</h1>
+  <p id="wordList"></p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function generateWords() {
+      var words = [
+        "用浏览气🔗是[domain]",
+        "🪜用浏览气🔗是[domain]",
+        "用浏览气🔗是[domain] 好🪜不解释",
+        "用浏览气🔗是[domain]是用过最好的，超稳定！",
+        "用浏览气🔗是[domain] 稳如🐶的🪜",
+        "用浏览气🔗是[domain]也太厉害了吧",
+        "🌍 用浏览气🔗是 [domain]",
+        "用浏览气🔗是[domain] 🌍试试",
+        "好🪜用浏览气🔗是 [domain]",
+        "可以的，用浏览气🔗是 [domain]",
+        "用浏览气🔗是[domain] 好用无需多言",
+        " 用浏览气🔗=[domain]",
+        "您好呀，[domain]介个䋞纸就很好用",
+        "又快又狠！[domain]介个是旺芷",
+        "用浏览气🔗=[domain] 来了老弟",
+        "用浏览气🔗=[domain]您前所未有的体验哟",
+        "都说好用王紫👉就是 [domain]",
+        "用浏览气🔗=[domain] 🐮啊",
+        "[domain]天啦噜，超级好用的䋞只",
+        "罔子是[domain]您来试试呀",
+        "[domain] 就是🪜的往祉喔",
+        "罔占👉[domain]我滴👩耶 超好用",
+        "[domain]突破！限制！是忘止",
+        "[domain]啊！好用的䒽纸",
+        "网zhi是 [domain]是真🐮  好用唷",
+        "[domain]来啦！🪜䒽之",
+        "王祉是 [domain]超厉害",
+        "[domain]超级稳定的🪜，是蛧纸😯",
+        "王志！ [domain]就能看世界",
+        "网📄是[domain]来呀！用了二十年了",
+        "三十年的老🪜 [domain]👉是往址唷",
+        "稳定运营八十年！[domain]您值得拥有，网粘噢",
+        "介个 [domain]说了好用您得信，往站噢",
+        "高速公路！[domain]👉网之就是噢",
+        "[domain]带您起飞哟，是蛧至",
+        "炒鸡厉害的🪜䒽占👉[domain]",
+        "[domain]好用哭了😭！汪🈯️喔",
+        "[domain]边用边哭！是網占喔",
+        "用 [domain]的🪜是上辈子的福气！罔战😯",
+        "[domain]直接升空喔，蛧汁",
+        "墙裂推荐哟[domain] 介是王子",
+        "[domain]来了老妹，望纸喔",
+        "[domain]来了老弟，䒽汁喔",
+        "隔壁领居告诉我说[domain] 是好用的蛧沾",
+        "悄悄告诉你[domain]就是䒽占喔啊",
+        "来吧来吧[domain] 炒鸡好的🪜汪祉",
+        "[domain]就是🪜的旺祉",
+        "[domain]老师告诉我说好用，是旺祉噢",
+        "[domain]大大滴好使，汪止哦",
+        "往📄就是[domain] 异常好用",
+        "[domain]兄弟们冲呀，是往痣",
+        "[domain]👉就是🪜魍智",
+        "網织👉[domain]同学告诉我的",
+        "嘎嘎嘎好使[domain] 就是罔芝嗷",
+        "隔壁小🐶说[domain]狠稳，是䒽颤",
+        "老爷爷说的[domain]好使，🕸️纸喔",
+        "[domain] 🐮啊 稳定看4k！是往绽",
+        "硬控！[domain]就是🪜罔子",
+        "自由的🪜 [domain]是王祉",
+        "[domain]突破限制！惘祉喔",
+        "忘植 [domain] 快的不止一点点哦",
+        "䒽落滴祉👉 [domain]厉害了",
+        "[domain]您说好使不好使，䋞子哦",
+        "惘芝就是[domain]抱歉来迟了！",
+        "纵享丝滑！[domain]就是䒽自",
+        "无限制！[domain]来啦望籽喔",
+        "王子！[domain]太好用！！！",
+        "旺咨就是👉 [domain]嘎嘎都说好",
+        "您猜猜怎么用呢！[domain]就是🪜汪治",
+        "惘绽 看看哟！ [domain]外面的世界很精彩！",
+        "[domain]睁开眼睛看看！是蛧占",
+        "[domain] 自由！ 是汪占",
+        "[domain]好用🪜的王占",
+        "开开王占就是👉 [domain]绝了",
+        "我滴个神呀！ [domain]炒鸡简单的枉战",
+        "🪜吼！ [domain]就是辋治喔",
+        "明白了！[domain]它就是蛧汁",
+        "收到！[domain]就是旺战",
+        "辋紫来啰👉[domain]我说好使你说✌️",
+        "汪纸就是[domain] 非常不错",
+        "往纸输入 [domain]  用了很久了",
+        "超好用，[domain]就是🪜wang祉噢",
+        "介个䋞芷👉[domain]就是🪜",
+        "[domain] 输入这个䋞 芷就能用",
+        "[domain]这个旺枳超好用",
+        "嘻嘻[domain] 就是🐮啊 🕸️站噢",
+        "来这不迷路[domain] 稳定好🚀  是往汁",
+        "没有束缚！[domain]就是👉蛧赞",
+        "好用哟！ [domain]速度嘎嘎快！ 是䒽暂",
+        "想不到吧。 [domain]就是介个王赞超好用",
+        "[domain] 🌍输入就是🪜",
+        "[domain]是真滴好用，🌍输入哟",
+        "[domain] 很厉害哟，用网夜输入",
+        "🌍输入[domain]就是🪜哟",
+        "[domain] 稳定得呀批  🌍输入噢",
+        "[domain]=🪜 也是🕸️祉哟",
+        "[domain]灰常耐斯，🌍输入哟",
+        "[domain]用了两年没跑路，用🌍输入",
+        "试试[domain] 🌍输入就是",
+        "做好事不留名 [domain]就是🪜的䒽赞",
+        "🌍输入[domain] 我是雷锋",
+        "输入试试 [domain]是🕸️纸",
+        "[domain] 不谢 🌍输入即可",
+        "嘻嘻嘻 [domain]就是🪜。🕸️🈯️哟",
+        "[domain]  大胆尝试一下，网速杠杠滴  🌍输入",
+        "[domain]，这个罔暂是好用的",
+        "🌍输入[domain]就是噢",
+        "来啰来啰 [domain]用🌍输入就是",
+        "好使得很哟，[domain] 🌍输入就是🪜",
+        "用[domain]吧  🌍输入就行",
+        "[domain] 一定要用🌍输入噢",
+        "[domain] 是最最最好用的！ 🌍输入就行",
+        "建议试试[domain] 🌍输入就行",
+        "用浏览气🔗=[domain]",
+        "🌍 用浏览气🔗=[domain] 懂吗",
+        "用浏览气🔗=[domain] 嘻嘻"
+      ];
+
+      var domains = ["a2f.lol", "em2.lol", "hp2.lol", "v8t.lol", "hp3.lol"];
+
+      var emojis = ["😀", "😂", "😅", "😊", "😍", "🤔", "😎", "😢", "🤯", "🥳", "🙄", "😴", "🥺", "🤤", "😷", "🙃", "🤩", "🤪", "😋", "😜", "😝", "😛", "😌", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "😣", "😖", "😫", "😩", "🥱", "😤", "😠", "😡", "🤬", "🤮", "🤢", "🤧", "😇", "🥰", "🤓", "🧐", "🤨", "😎", "🤠", "🥳", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"];
+
+      var synonyms = {
+        "好用": ["好用", "易用", "方便", "顺手", "好使", "便捷", "简单", "上手"],
+        "稳定": ["稳定", "稳如", "坚固", "可靠", "稳健", "牢靠", "平稳", "不动"],
+        "超好用": ["超好用", "非常好用", "超级好用", "特别好用", "极其好用", "极度好用", "超棒", "极棒"],
+        "快": ["快", "迅速", "飞快", "高速", "急速", "快速", "迅疾", "神速"],
+        "就是": ["就是", "便是", "正是", "恰是", "即是", "等于", "就是如此", "正好是"]
+      };
+
+      var wordList = document.getElementById("wordList");
+      wordList.innerHTML = "";
+
+      // 打乱域名顺序
+      domains = domains.sort(function() {
+        return 0.5 - Math.random();
+      });
+
+      // 随机选择并显示5行词汇
+      for (var i = 0; i < 5; i++) {
+        var randomIndex = Math.floor(Math.random() * words.length);
+        var word = words[randomIndex];
+        var wordElement = document.createElement("div");
+        wordElement.className = "word";
+
+        // 提取域名
+        var domainIndex = i % domains.length;
+        var domain = domains[domainIndex];
+
+        // 插入域名
+        var replacedWord = word.replace("[domain]", domain);
+
+        // 随机选择一个表情并决定插入位置
+        var emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        var placeAtStart = Math.random() < 0.5;
+        replacedWord = placeAtStart ? emoji + " " + replacedWord : replacedWord + " " + emoji;
+
+        // 随机替换部分词汇
+        for (var key in synonyms) {
+          if (replacedWord.includes(key)) {
+            var synonym = synonyms[key][Math.floor(Math.random() * synonyms[key].length)];
+            replacedWord = replacedWord.replace(key, synonym);
+          }
+        }
+
+        var wordTextElement = document.createElement("span");
+        wordTextElement.className = "word-text";
+        wordTextElement.textContent = replacedWord;
+        wordElement.appendChild(wordTextElement);
+
+        // 添加复制按钮
+        var copyButton = document.createElement("button");
+        copyButton.className = "copy-button";
+        copyButton.textContent = "复制";
+        copyButton.onclick = function() {
+          var range = document.createRange();
+          range.selectNodeContents(this.previousSibling);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          document.execCommand("copy");
+          selection.removeAllRanges();
+          alert('已复制');
+        };
+        wordElement.appendChild(copyButton);
+
+        wordList.appendChild(wordElement);
+      }
+    }
+
+    generateWords();
+  });
+</script>
+</body>
+</html>
